@@ -57,6 +57,14 @@ async def get_books_by_query(subject: str):
             books_by_subject.append(book)
     return books_by_subject
 
+@app.get("/books/by_author/")
+async def get_all_books_by_author(author_name: str):
+    books_by_author = []
+    for book in books:
+        if book.get("author").casefold() == author_name.casefold():
+            books_by_author.append(book)
+    return books_by_author
+
 # get book by path param and query param
 @app.get("/books/{author}/")
 async def get_books_by_author_subject(author: str, subject: str):
@@ -109,3 +117,13 @@ async def delete_book(book_title: str):
         return {"Something went wrong!"}
 
         
+
+# get all books by author name using path or query params
+
+# @app.get("/books/by_author/{author_name}")
+# async def get_all_books_by_author(author_name: str):
+#     books_by_author = []
+#     for book in books:
+#         if book.get("author").casefold() == author_name.casefold():
+#             books_by_author.append(book)
+#     return books_by_author
